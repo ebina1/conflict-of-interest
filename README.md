@@ -7,9 +7,12 @@ This is a Python script built under python3.4.3 using the tkinter(TK interface) 
 
 Input files are either xlsx or csv files.  The reviewer data is either a single column of reviewer names (First Last) with no header, or it looks for headers with Reviewer (but not email) in the name and reads those columns (First Last; First Last; ...)  The submission data if it lacks a header has paper IDs in the leftmost column (one per row) with co-authors names directly following (also one per row)
 
+<pre>
 ------------------------------------
 | PaperID |             |
------------------------------------
+----------------------------------
+| PaperID |             |
+----------------------------------- 
 |         | First Last  |
 -----------------------------------
 |         | First Last  |
@@ -17,6 +20,7 @@ Input files are either xlsx or csv files.  The reviewer data is either a single 
 | PaperID |             |
 ----------------------------------
 | .......
+</pre>
 
 It will also read submission data from a "standard" format I was shown where column 0 is the Paper ID, and column 5 is the Author Names separated bny semi-colons.
 
