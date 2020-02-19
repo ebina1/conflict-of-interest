@@ -533,7 +533,7 @@ def read_conflict_list():
 def find_conflicts(name, clist, cyear):
 	global Current_author
 	url = "https://dblp.org/search/publ/api?q=author%3A" + name + "%3A&h=1000&format=json"
-#	print(url)
+	# print(url)
 	response = urllib.request.urlopen(url)
 	if (response.getcode() != 200):
 		return({})
@@ -550,7 +550,8 @@ def find_conflicts(name, clist, cyear):
 		year = hit_data['info']['year']
 		if (int(year) >= cyear):
 			if isinstance(auth_list, list):
-				for auth_name in auth_list:
+				for auth_entry in auth_list:
+					auth_name = auth_entry['text']
 					if (auth_name in clist):
 						if (auth_name in cons):
 							cons[auth_name].append(year)
@@ -558,12 +559,13 @@ def find_conflicts(name, clist, cyear):
 							cons[auth_name] = []
 							cons[auth_name].append(year)
 			else:
-				if (auth_list in clist):
-					if (auth_list in cons):
-						cons[auth_list].append(year)
+				auth_name = auth_list['text']
+				if (auth_name in clist):
+					if (auth_name in cons):
+						cons[auth_name].append(year)
 					else:
-						cons[auth_list] = []
-						cons[auth_list].append(year)
+						cons[auth_name] = []
+						cons[auth_name].append(year)
 		pp = 100 * hit_indx / int(hit_cnt)
 		if (pp < 2):
 			pp = 2
